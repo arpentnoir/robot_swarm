@@ -15,12 +15,25 @@ public class Robot {
 
   private LinkedList instructionList;
 
+  /**
+   *
+   * @param xPos
+   * @param yPos
+   * @param heading
+   */
   public Robot(int xPos, int yPos, char heading){
     this.xPos = xPos;
     this.yPos = yPos;
     this.heading = heading;
   }
 
+  /**
+   *
+   * @param xPos
+   * @param yPos
+   * @param heading
+   * @param instructionList
+   */
   public Robot(int xPos, int yPos, char heading, LinkedList instructionList){
     this.xPos = xPos;
     this.yPos = yPos;
@@ -28,38 +41,49 @@ public class Robot {
     this.instructionList = instructionList;
   }
 
+  /**
+   * Run sequentially through this robot's list of instructions
+   * @return
+   */
   public boolean executeInstructions(){
     for(Object instruction : instructionList){
-      if((char) instruction == 'L'|| (char) instruction == 'R'){
-        executeTurn((char) instruction);
-      } else {
+      if((char) instruction == 'M'){
         executeMove();
+      } else {
+        executeTurn((char) instruction);
       }
 
     }
     return true;
   }
 
+  /**
+   *
+   * @param direction
+   */
   public void executeTurn(char direction){
     heading = RobotUtils.getNextDirection(heading, direction);
   }
 
-  public void executeMove(){
+  /**
+   *
+   */
+  public boolean executeMove(){
     switch (heading){
       case 'N':
         yPos++;
-        break;
+        return true;
       case 'W':
-        yPos++;
-        break;
+        xPos--;
+        return true;
       case 'S':
         yPos--;
-        break;
+        return true;
       case 'E':
-        xPos--;
-        break;
+        xPos++;
+        return true;
       default:
-        throw new IllegalArgumentException();
+        return true;
     }
 
   }
