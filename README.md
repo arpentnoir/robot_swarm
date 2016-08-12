@@ -1,7 +1,7 @@
 # Robot Swarm
 
 Robot Swarm models the movements of a flock of autonomous robots within a search grid by calculating and displaying
-their final position based on a set of movement instructions. 
+their final position based on a set of movement instructions.
 
 ## To Run
 
@@ -53,3 +53,13 @@ MRLRMMRL
 MMRMMRLM
 ```
 
+## Output
+
+RobotSwarmManager outputs the final position of each robot given in the input. For example, the output for the above
+sample input is:
+
+```
+3 5 E
+2 5 N
+4 0 S
+```
