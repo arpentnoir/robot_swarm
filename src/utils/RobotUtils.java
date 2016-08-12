@@ -3,6 +3,8 @@ package utils;
 import java.util.LinkedList;
 
 /**
+ * Contains some utility methods for handling input values and direction changes.
+ *
  * Created by richardspellman on 11/08/2016.
  */
 public class RobotUtils {

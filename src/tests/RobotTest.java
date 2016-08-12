@@ -21,11 +21,12 @@ public class RobotTest {
   Robot robot1;
   Robot robot2;
 
-  Robot turningRobot;
-
   LinkedList instructionList1;
   LinkedList instructionList2;
 
+  /**
+   * Set up and check example test case.
+   */
   @Before
   public void setUp(){
 
@@ -44,10 +45,6 @@ public class RobotTest {
     Assert.assertEquals(3, robot2.getyPos());
     Assert.assertEquals('E', robot2.getHeading());
 
-    //
-    turningRobot = new Robot(0, 0, 'N');
-    Assert.assertEquals('N', turningRobot.getHeading());
-
   }
 
   @After
@@ -59,6 +56,10 @@ public class RobotTest {
     robot2 = null;
   }
 
+  /**
+   * Checks that the Robot's expected position and heading are as expected after executing it's instruction list.
+   * @throws Exception
+   */
   @Test
   public void testExecuteInstructions() throws Exception {
     Assert.assertTrue(robot1.executeInstructions());
@@ -74,8 +75,16 @@ public class RobotTest {
 
   }
 
+  /**
+   * Checks that a left or right turn results in the expected orientation, given all starting headings
+   * @throws Exception
+   */
   @Test
   public void testExecuteTurn() throws Exception {
+    //
+    Robot turningRobot = new Robot(0, 0, 'N');
+    Assert.assertEquals('N', turningRobot.getHeading());
+
     turningRobot.executeTurn('L');
     Assert.assertEquals('W', turningRobot.getHeading());
     turningRobot.executeTurn('L');
@@ -95,6 +104,10 @@ public class RobotTest {
 
   }
 
+  /**
+   * Checks that execution of a move directive by a robot facing north results in an increment of it's y position.
+   * @throws Exception
+   */
   @Test
   public void testExecuteMoveNorth() throws Exception {
     Robot robot = new Robot(0, 0, 'N');
@@ -109,6 +122,10 @@ public class RobotTest {
     Assert.assertEquals('N', robot.getHeading());
   }
 
+  /**
+   * Checks that execution of a move directive by a robot facing south results in a decrement of it's y position.
+   * @throws Exception
+   */
   @Test
   public void testExecuteMoveSouth() throws Exception {
     // Robot starts at position (0, 1) facing south
@@ -125,6 +142,10 @@ public class RobotTest {
     Assert.assertEquals('S', robot.getHeading());
   }
 
+  /**
+   * Checks that execution of a move directive by a robot facing east results in an increment of it's x position.
+   * @throws Exception
+   */
   @Test
   public void testExecuteMoveEast() throws Exception {
     Robot robot = new Robot(0, 0, 'E');
@@ -139,6 +160,10 @@ public class RobotTest {
     Assert.assertEquals('E', robot.getHeading());
   }
 
+  /**
+   * Checks that execution of a move directive by a robot facing west results in a decrement of it's x position.
+   * @throws Exception
+   */
   @Test
   public void testExecuteMoveWest() throws Exception {
     Robot robot = new Robot(1, 0, 'W');
@@ -153,6 +178,10 @@ public class RobotTest {
     Assert.assertEquals('W', robot.getHeading());
   }
 
+  /**
+   * Checks that the Robot's toString method prints as expected.
+   * @throws Exception
+   */
   @Test
   public void testToString() throws Exception {
 
