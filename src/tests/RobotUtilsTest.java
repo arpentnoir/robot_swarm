@@ -4,13 +4,16 @@ import org.junit.Assert;
 import org.junit.Test;
 import utils.RobotUtils;
 
+import java.util.LinkedList;
+
 /**
  * Created by richardspellman on 11/08/2016.
  */
 public class RobotUtilsTest {
+
   @Test
   public void testCreateInstructionList() throws Exception {
-
+    LinkedList list = RobotUtils.createInstructionList("");
   }
 
   @Test

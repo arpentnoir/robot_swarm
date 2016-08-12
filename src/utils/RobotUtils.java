@@ -1,7 +1,5 @@
 package utils;
 
-import models.Robot;
-
 import java.util.LinkedList;
 
 /**
@@ -11,6 +9,11 @@ public class RobotUtils {
 
   private final static char[] directions = {'N', 'E', 'S', 'W'};
 
+  /**
+   * Creates a LinkedList of instructions from a given String.
+   * @param instructions A String representing the list of instructions.
+   * @return A LinkedList of instructions.
+   */
   public static LinkedList createInstructionList(String instructions){
     LinkedList instructionList = new LinkedList();
     for(int i = 0; i < instructions.length(); i++){
@@ -19,6 +22,13 @@ public class RobotUtils {
     return instructionList;
   }
 
+  /**
+   * Gets the resultant heading given a current heading and a direction to turn.
+   *
+   * @param currentHeading A char representing the current heading, either 'N', 'S', 'E' or 'W'
+   * @param turn A char representing the direction to turn, either 'L' or 'R'
+   * @return A char representing the resultant direction from the given turn, either 'N', 'S', 'E' or 'W'.
+   */
   public static char getNextDirection(char currentHeading, char turn){
     switch(turn){
       case 'L':
@@ -31,6 +41,13 @@ public class RobotUtils {
 
   }
 
+  /**
+   * Returns the index of the given heading.
+   *
+   * Used by RobotUtils.getNextDirection()
+   * @param heading A char representing the heading to look up.
+   * @return The position in the heading array of the given char.
+   */
   private static int getHeadingIndex(char heading){
 
     switch(heading){
@@ -47,7 +64,4 @@ public class RobotUtils {
     }
   }
 
-  public void printRobotPositions(Robot[] robots){
-
-  }
 }
