@@ -18,9 +18,13 @@ public class RobotManagerTest {
   RobotManager robotManager;
   Scanner scanner;
 
+  /**
+   * Sets up the example test case.
+   */
   @Before
   public void setUp(){
     robotManager = new RobotManager();
+    // example test input
     String exampleInput = "5 5\n" +
         "1 2 N\n" +
         "LMLMLMLMM\n" +
@@ -37,6 +41,15 @@ public class RobotManagerTest {
     scanner = null;
   }
 
+  /**
+   * Checks that the ArrayList of Robots created from the input strings contains the expected Robots and is of the
+   * correct length.
+   *
+   * Note that the first raw input line - that representing the grid - is stripped out before making the assertions,
+   * as RobotManager.getRobotsFromInput() expects this.
+   *
+   * @throws Exception
+   */
   @Test
   public void testGetRobotsFromInput() throws Exception {
     ArrayList<Robot> actualRobots;
@@ -56,6 +69,10 @@ public class RobotManagerTest {
 
   }
 
+  /**
+   * Checks that each line read by scanner is as expected, given the example input.
+   * @throws Exception
+   */
   @Test
   public void testGetInputLines() throws Exception {
     ArrayList<String> inputLines = robotManager.getInputLines(scanner);
@@ -68,6 +85,12 @@ public class RobotManagerTest {
 
   }
 
+  /**
+   * Tests running through the instruction list of the two robots in the example test case.
+   * First asserts that robots are in expected starting position and heading, runs through instruction set for each
+   * robot, then asserts that their final positions and headings are as expected.
+   * @throws Exception
+   */
   @Test
   public void testExecute() throws Exception {
     ArrayList<String> inputLines = robotManager.getInputLines(scanner);

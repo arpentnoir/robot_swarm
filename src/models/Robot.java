@@ -5,6 +5,15 @@ import utils.RobotUtils;
 import java.util.LinkedList;
 
 /**
+ *
+ * Class representing a Robot explorer.
+ * <p>
+ * A robot's position and location is represented by a combination of x and y co-ordinates and a letter
+ * representing one of the four cardinal compass points. An example position might be 0, 0, N, which means the
+ * robot is in the bottom left corner and facing North. Each robot also has an instruction set, represented by a
+ * string of values indicating either a turn (L for left, R for Right) which changes the robots heading by 90 degrees
+ * in the given direction, or a move (M) which moves the robot one square in the direction of it's current heading.
+ * <p>
  * Created by richardspellman on 11/08/2016.
  */
 public class Robot {

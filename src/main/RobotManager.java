@@ -9,9 +9,12 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
+ * Robot Swarm Manager
+ *
+ * This class contains a main method which, when run, handles user input from the command line, creates the robots
+ * represented by the input and runs through each of their instructions, printing output to command line.
+ *
  * Created by richardspellman on 11/08/2016.
- *
- *
  */
 public class RobotManager {
   private int gridWidth;
