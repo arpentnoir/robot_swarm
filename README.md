@@ -1,5 +1,8 @@
 # Robot Swarm
 
+Robot Swarm models the movements of a flock of autonomous robots within a search grid by calculating and displaying
+their final position based on a set of movement instructions. 
+
 ## To Run
 
 There is a jar file located at robot_swarm/out
