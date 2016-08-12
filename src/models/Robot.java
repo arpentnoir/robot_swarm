@@ -14,6 +14,9 @@ import java.util.LinkedList;
  * string of values indicating either a turn (L for left, R for Right) which changes the robots heading by 90 degrees
  * in the given direction, or a move (M) which moves the robot one square in the direction of it's current heading.
  * <p>
+ * Robots navigate a rectangular grid. If a robot's instruction set results in the robot being given instructions to
+ * exit the grid, the robot will pause and execute the next instruction that does not result in it exiting the grid.
+ * <p>
  * Created by richardspellman on 11/08/2016.
  */
 public class Robot {
@@ -21,10 +24,12 @@ public class Robot {
   private int xPos;
   private int yPos;
   private char heading;
-
   private boolean instructionsComplete = false;
-
   private LinkedList instructionList;
+
+  private int boundaryX;
+  private int boundaryY;
+
 
   /**
    * Constructs a new Robot with initial x and y coordinates and initial heading.
@@ -39,18 +44,39 @@ public class Robot {
   }
 
   /**
-   * Constructs a new Robot with initial x and y coordinates, an initial heading and instruction list.
+   * Constructs a new Robot with initial x and y coordinates and initial heading and landing area boundary values.
+   * @param xPos Initial x position of this Robot.
+   * @param yPos Initial y position of this Robot.
+   * @param heading Initial heading of this Robot.
+   * @param boundaryX The x coordinate of the eastern most boundary of the landing area.
+   * @param boundaryY The y coordinate of the northern most boundary of the landing area.
+   */
+  public Robot(int xPos, int yPos, char heading, int boundaryX, int boundaryY){
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.heading = heading;
+    this.boundaryX = boundaryX;
+    this.boundaryY = boundaryY;
+  }
+
+  /**
+   * Constructs a new Robot with initial x and y coordinates, an initial heading and instruction list and landing
+   * area boundary values.
    *
    * @param xPos Initial x position of this Robot
    * @param yPos Initial y position of this Robot
    * @param heading Initial heading of this Robot
    * @param instructionList This Robot's instruction list
+   * @param boundaryX The x coordinate of the eastern most boundary of the landing area.
+   * @param boundaryY The y coordinate of the northern most boundary of the landing area.
    */
-  public Robot(int xPos, int yPos, char heading, LinkedList instructionList){
+  public Robot(int xPos, int yPos, char heading, LinkedList instructionList, int boundaryX, int boundaryY){
     this.xPos = xPos;
     this.yPos = yPos;
     this.heading = heading;
     this.instructionList = instructionList;
+    this.boundaryX = boundaryX;
+    this.boundaryY = boundaryY;
   }
 
   /**
@@ -84,20 +110,22 @@ public class Robot {
 
   /**
    * Changes the position of the Robot based on it's current heading.
+   *
+   * Resultant position is constrained by the landing grid.
    */
   public boolean executeMove(){
     switch (heading){
       case 'N':
-        yPos++;
+        yPos = Math.min(yPos + 1, boundaryY);
         return true;
       case 'W':
-        xPos--;
+        xPos = Math.max(xPos - 1, 0);
         return true;
       case 'S':
-        yPos--;
+        yPos = Math.max(yPos - 1, 0);
         return true;
       case 'E':
-        xPos++;
+        xPos = Math.min(xPos + 1, boundaryX);
         return true;
       default:
         return true;

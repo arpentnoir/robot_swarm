@@ -94,7 +94,11 @@ public class RobotManagerTest {
   @Test
   public void testExecute() throws Exception {
     ArrayList<String> inputLines = robotManager.getInputLines(scanner);
-    inputLines.remove(0);
+    // get the size of the landing grid
+    String[] gridSize = inputLines.remove(0).split("\\s");
+    robotManager.setGridWidth(Integer.valueOf(gridSize[0]));
+    robotManager.setGridHeight(Integer.valueOf(gridSize[1]));
+
     ArrayList<Robot> robots = robotManager.getRobotsFromInput(inputLines);
 
     Assert.assertEquals(1, robots.get(0).getxPos());

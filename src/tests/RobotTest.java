@@ -32,10 +32,10 @@ public class RobotTest {
 
     // Example test setup
     instructionList1 = RobotUtils.createInstructionList("LMLMLMLMM");
-    robot1 = new Robot(1, 2, 'N', instructionList1);
+    robot1 = new Robot(1, 2, 'N', instructionList1, 5, 5);
 
     instructionList2 = RobotUtils.createInstructionList("MMRMMRMRRM");
-    robot2 = new Robot(3, 3, 'E', instructionList2);
+    robot2 = new Robot(3, 3, 'E', instructionList2, 5, 5);
 
     Assert.assertEquals(1, robot1.getxPos());
     Assert.assertEquals(2, robot1.getyPos());
@@ -106,11 +106,13 @@ public class RobotTest {
 
   /**
    * Checks that execution of a move directive by a robot facing north results in an increment of it's y position.
+   * Also checks that an instruction to move north when already at the boundary does not result in the robot exiting
+   * the landing area.
    * @throws Exception
    */
   @Test
   public void testExecuteMoveNorth() throws Exception {
-    Robot robot = new Robot(0, 0, 'N');
+    Robot robot = new Robot(0, 0, 'N', 5, 5);
     Assert.assertEquals(0, robot.getxPos());
     Assert.assertEquals(0, robot.getyPos());
     Assert.assertEquals('N', robot.getHeading());
@@ -120,16 +122,30 @@ public class RobotTest {
     Assert.assertEquals(0, robot.getxPos());
     Assert.assertEquals(1, robot.getyPos());
     Assert.assertEquals('N', robot.getHeading());
+
+    // create new robot at top most boundary
+    robot = new Robot(0, 5, 'N', 5, 5);
+    Assert.assertEquals(0, robot.getxPos());
+    Assert.assertEquals(5, robot.getyPos());
+    Assert.assertEquals('N', robot.getHeading());
+
+    robot.executeMove();
+
+    Assert.assertEquals(0, robot.getxPos());
+    Assert.assertEquals(5, robot.getyPos());
+    Assert.assertEquals('N', robot.getHeading());
   }
 
   /**
    * Checks that execution of a move directive by a robot facing south results in a decrement of it's y position.
+   * Also checks that an instruction to move south when already at the boundary does not result in the robot exiting
+   * the landing area.
    * @throws Exception
    */
   @Test
   public void testExecuteMoveSouth() throws Exception {
     // Robot starts at position (0, 1) facing south
-    Robot robot = new Robot(0, 1, 'S');
+    Robot robot = new Robot(0, 1, 'S', 5, 5);
     Assert.assertEquals(0, robot.getxPos());
     Assert.assertEquals(1, robot.getyPos());
     Assert.assertEquals('S', robot.getHeading());
@@ -140,15 +156,29 @@ public class RobotTest {
     Assert.assertEquals(0, robot.getxPos());
     Assert.assertEquals(0, robot.getyPos());
     Assert.assertEquals('S', robot.getHeading());
+
+    // create new robot at bottom most boundary
+    robot = new Robot(0, 0, 'S', 5, 5);
+    Assert.assertEquals(0, robot.getxPos());
+    Assert.assertEquals(0, robot.getyPos());
+    Assert.assertEquals('S', robot.getHeading());
+
+    robot.executeMove();
+
+    Assert.assertEquals(0, robot.getxPos());
+    Assert.assertEquals(0, robot.getyPos());
+    Assert.assertEquals('S', robot.getHeading());
   }
 
   /**
    * Checks that execution of a move directive by a robot facing east results in an increment of it's x position.
+   * Also checks that an instruction to move east when already at the boundary does not result in the robot exiting
+   * the landing area.
    * @throws Exception
    */
   @Test
   public void testExecuteMoveEast() throws Exception {
-    Robot robot = new Robot(0, 0, 'E');
+    Robot robot = new Robot(0, 0, 'E', 5, 5);
     Assert.assertEquals(0, robot.getxPos());
     Assert.assertEquals(0, robot.getyPos());
     Assert.assertEquals('E', robot.getHeading());
@@ -158,16 +188,42 @@ public class RobotTest {
     Assert.assertEquals(1, robot.getxPos());
     Assert.assertEquals(0, robot.getyPos());
     Assert.assertEquals('E', robot.getHeading());
+
+    //create new robot at rightmost boundary
+    robot = new Robot(5, 0, 'E', 5, 5);
+    Assert.assertEquals(5, robot.getxPos());
+    Assert.assertEquals(0, robot.getyPos());
+    Assert.assertEquals('E', robot.getHeading());
+
+    robot.executeMove();
+
+    Assert.assertEquals(5, robot.getxPos());
+    Assert.assertEquals(0, robot.getyPos());
+    Assert.assertEquals('E', robot.getHeading());
   }
 
   /**
    * Checks that execution of a move directive by a robot facing west results in a decrement of it's x position.
+   * Also checks that an instruction to move west when already at the boundary does not result in the robot exiting
+   * the landing area.
    * @throws Exception
    */
   @Test
   public void testExecuteMoveWest() throws Exception {
-    Robot robot = new Robot(1, 0, 'W');
+    Robot robot = new Robot(1, 0, 'W', 5, 5);
     Assert.assertEquals(1, robot.getxPos());
+    Assert.assertEquals(0, robot.getyPos());
+    Assert.assertEquals('W', robot.getHeading());
+
+    robot.executeMove();
+
+    Assert.assertEquals(0, robot.getxPos());
+    Assert.assertEquals(0, robot.getyPos());
+    Assert.assertEquals('W', robot.getHeading());
+
+    // create new robot at left most boundary
+    robot = new Robot(0, 0, 'W', 5, 5);
+    Assert.assertEquals(0, robot.getxPos());
     Assert.assertEquals(0, robot.getyPos());
     Assert.assertEquals('W', robot.getHeading());
 

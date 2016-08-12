@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
  */
 public class RobotManager {
   private int gridWidth;
+
   private int gridHeight;
 
   private ArrayList<Robot> robots;
@@ -98,7 +99,7 @@ public class RobotManager {
       int yPos = Integer.valueOf(robotLine[1]);
       char heading = robotLine[2].charAt(0);
 
-      robots.add(new Robot(xPos, yPos, heading, instructionList));
+      robots.add(new Robot(xPos, yPos, heading, instructionList, gridWidth, gridHeight));
     }
     return robots;
 
@@ -150,6 +151,22 @@ public class RobotManager {
       }
     }
     return true;
+  }
+
+  public int getGridWidth() {
+    return gridWidth;
+  }
+
+  public void setGridWidth(int gridWidth) {
+    this.gridWidth = gridWidth;
+  }
+
+  public int getGridHeight() {
+    return gridHeight;
+  }
+
+  public void setGridHeight(int gridHeight) {
+    this.gridHeight = gridHeight;
   }
 
 }
