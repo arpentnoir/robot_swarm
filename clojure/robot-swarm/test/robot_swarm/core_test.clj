@@ -87,9 +87,4 @@
 	)
 
 
-(deftest test-print-robot-positions
-	(testing "Final position of each robot represented by input lines should be printed"
-		(is (=)))
-	)
-
 
