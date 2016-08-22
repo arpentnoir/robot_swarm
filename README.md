@@ -3,7 +3,26 @@
 Robot Swarm models the movements of a flock of autonomous robots within a search grid by calculating and displaying
 their final position based on a set of movement instructions.
 
-## To Run
+## Clojure Solution 
+
+### To Run
+
+There is a jar file located at clojure/robot-swarm/target/uberjar. You can run by executing the following, then entering your input
+followed by an EOF character (ctrl-d)
+
+```
+java -jar robot-swarm-0.1.0-SNAPSHOT-standalone.jar
+```
+
+Alternatively, you can pass the path of a file, containing input data, as an argument:
+
+```
+java -jar robot-swarm-0.1.0-SNAPSHOT-standalone.jar input.txt
+```
+
+## Java Solution 
+
+### To Run
 
 There is a jar file located at robot_swarm/out
 
