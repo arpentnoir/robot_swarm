@@ -69,7 +69,7 @@ public class RobotManager {
    * @return Returns and ArrayList of strings representing the input.
    */
   public ArrayList<String> getInputLines(Scanner scanner){
-    ArrayList<String> inputLines = new ArrayList<String>();
+    ArrayList<String> inputLines = new ArrayList<>();
     while(scanner.hasNextLine()){
       String line = scanner.nextLine();
       if(line.length() == 0){
@@ -90,7 +90,7 @@ public class RobotManager {
    * @return An ArrayList of Robot Objects.
    */
   public ArrayList<Robot> getRobotsFromInput(ArrayList<String> inputLines){
-    ArrayList<Robot> robots = new ArrayList<Robot>();
+    ArrayList<Robot> robots = new ArrayList<>();
     for(int i = 0; i < inputLines.size() - 1; i += 2){
       String[] robotLine = inputLines.get(i).split("\\s+");
       String instructionLine = inputLines.get(i + 1);
@@ -126,7 +126,7 @@ public class RobotManager {
   }
 
   /**
-   * Validates input from scanner again regex patterns representing expected format.
+   * Validates input from scanner against regex patterns representing expected format.
    *
    * Patterns:
    *   gridPattern  - "\\d+\\s\\d+" : Any two integers seperated by whitespace character

@@ -7,11 +7,18 @@ their final position based on a set of movement instructions.
 
 There is a jar file located at robot_swarm/out
 
-You can run by executing the following from the command line. 
+You can run by executing the following from the command line, then entering your input.
 
 ``` 
 java -jar RobotSwarmManager.jar 
 ```
+
+Alternatively, if you have your input data properly formatted in a txt file, you can just run the following: 
+
+```
+java -jar RobotSwarmManager.jar < input.txt 
+```
+
 
 ## Input Format
 

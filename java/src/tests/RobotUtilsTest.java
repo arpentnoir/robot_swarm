@@ -34,4 +34,5 @@ public class RobotUtilsTest {
   public void testPrintRobotPositions() throws Exception {
 
   }
+
 }
